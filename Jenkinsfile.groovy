@@ -22,7 +22,7 @@ pipeline {
         stage("Push image") {
             steps {
                 script {
-                    docker.withRegistry('public.ecr.aws/r2m7p7n2', 'awsecr') {
+                    docker.withRegistry('https://public.ecr.aws/r2m7p7n2', 'awsecr') {
                             myapp.push("latest")
                             myapp.push("${env.BUILD_ID}")
                     }

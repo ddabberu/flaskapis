@@ -15,7 +15,7 @@ pipeline {
         stage("Build image") {
             steps {
                 script {
-                    myapp = docker.build("eksdemos-dabberu:${env.BUILD_ID}")
+                    myapp = docker.build("public.ecr.aws/r2m7p7n2/eksdemos-dabberu:${env.BUILD_ID}")
                 }
             }
         }

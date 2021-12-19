@@ -40,7 +40,7 @@ pipeline {
             }
         }
         */
-        state('Test user acces'){
+        stage('Test user acces'){
             sh "kubectl auth can-i create pods"
         }
     }    

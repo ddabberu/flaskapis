@@ -7,12 +7,13 @@ pipeline {
         CREDENTIALS_ID = 'eks'
     }
     stages {
-        /*
+        
         stage("Checkout code") {
             steps {
                 checkout scm
             }
         }
+        /*
         stage("Build image") {
             steps {
                 script {

@@ -7,6 +7,7 @@ pipeline {
         CREDENTIALS_ID = 'eks'
     }
     stages {
+        /*
         stage("Checkout code") {
             steps {
                 checkout scm
@@ -29,13 +30,17 @@ pipeline {
                 }
             }
         }
-        /*        
-        stage('Deploy to GKE') {
+        */
+        /*       
+        stage('Deploy to AWS EKS') {
             steps{
                 sh "sed -i 's/hello:latest/hello:${env.BUILD_ID}/g' deployment.yaml"
                 step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
             }
         }
         */
+        state('Test user acces'){
+            sh "kubectl auth can-i create pods"
+        }
     }    
 }

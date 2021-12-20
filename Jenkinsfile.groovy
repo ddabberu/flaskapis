@@ -1,9 +1,6 @@
 pipeline {
     agent any
     environment {
-        PROJECT_ID = 'PROJECT-ID'
-        CLUSTER_NAME = 'CLUSTER-NAME'
-        LOCATION = 'CLUSTER-LOCATION'
         CREDENTIALS_ID = 'eks'
     }
     stages {
@@ -13,7 +10,7 @@ pipeline {
                 checkout scm
             }
         }
-        /*
+    
         stage("Build image") {
             steps {
                 script {
@@ -31,17 +28,11 @@ pipeline {
                 }
             }
         }
-        */
-        /*       
-        stage('Deploy to AWS EKS') {
-            steps{
-                sh "sed -i 's/hello:latest/hello:${env.BUILD_ID}/g' deployment.yaml"
-                step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
+        stage('Deploy application') {
+            steps {
+                echo 'Hello World'
+                sh 'helm install flaskhw dabberu-repos/flaskhw-chart --namespace apps --create-namespace -f values.yaml --set image.tag="latest" --dry-run'
             }
-        }
-        */
-        stage('Test user acces'){
-            sh "kubectl auth can-i create pods"
-        }
+        } 
     }    
 }

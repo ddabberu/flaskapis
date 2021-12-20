@@ -28,10 +28,11 @@ pipeline {
                 }
             }
         }
-        stage('Deploy application') {
+        stage('Deploy to EKS') {
             steps {
                 echo 'Hello World'
-                sh 'helm install flaskhw dabberu-repos/flaskhw-chart --namespace apps --create-namespace -f values.yaml --set image.tag="latest" --dry-run'
+                // sh 'helm install flaskhw dabberu-repos/flaskhw-chart --namespace apps --create-namespace -f values.yaml --set image.tag="latest" --dry-run'
+                sh 'helm upgrade flaskhw dabberu-repos/flaskhw-chart --namespace apps --create-namespace -f values.yaml '
             }
         } 
     }    

@@ -32,7 +32,7 @@ pipeline {
             steps {
                 echo 'Hello World'
                 // sh 'helm install flaskhw dabberu-repos/flaskhw-chart --namespace apps --create-namespace -f values.yaml --set image.tag="latest" --dry-run'
-                sh 'helm upgrade flaskhw dabberu-repos/flaskhw-chart --namespace apps --create-namespace -f values.yaml '
+                sh 'helm upgrade flaskhw dabberu-repos/flaskhw-chart --install --namespace apps --create-namespace -f values.yaml '
             }
         } 
     }    
